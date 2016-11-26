@@ -71,14 +71,14 @@ public class LoginController implements Initializable {
 				}
 				
 				this.usuarioDAO.insert(usuario);
-				ToolMessage.showInformationMessage("Cadastro realizado com sucesso!","");
+				ToolMessage.showInformationMessage("","Cadastro realizado com sucesso!");
 				limpaCamposCadastro();
 			} else {
-				ToolMessage.showInformationMessage("Não foi possível realizar o seu cadastro","");
+				ToolMessage.showInformationMessage("","Não foi possível realizar o seu cadastro");
 			}
 
 		} else {
-			ToolMessage.showInformationMessage("Não foi possível realizar o seu cadastro","");
+			ToolMessage.showInformationMessage("","Não foi possível realizar o seu cadastro");
 		}
 	}
 	
@@ -94,16 +94,16 @@ public class LoginController implements Initializable {
 						UsuarioSessao.setUser(usuario.get(0));
 						System.out.println("--"+usuario.get(0));
 						//showNextScreen(usuario);
-						ToolMessage.showInformationMessage("Cadastro realizado com sucesso!","");
+						ToolMessage.showInformationMessage("","Cadastro realizado com sucesso!");
 					} else {
-						ToolMessage.showInformationMessage("Não foi possível realizar o seu cadastro","");
+						ToolMessage.showErrorMessage("Não foi possível realizar o seu cadastro.");
 					}
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}
 			}
 		} else {
-			ToolMessage.showInformationMessage("Não foi possível realizar o seu cadastro","");
+			ToolMessage.showErrorMessage("Não foi possível realizar o seu cadastro");
 		}
 	}
 	
