@@ -6,8 +6,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
-public class TFMessage {
-	public static void showMessage(String title, String message){
+public class ToolMessage {
+	public static void showInformationMessage(String title, String message){
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
