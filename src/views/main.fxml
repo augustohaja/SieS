@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <children>
+      <Line endX="80.0" layoutX="316.0" layoutY="237.0" rotate="90.0" startX="-120.0" stroke="#8d8d8d" />
+      <TextField fx:id="txtNomeCadastro" layoutX="91.0" layoutY="200.0" />
+      <TextField fx:id="txtEmailCadastro" layoutX="91.0" layoutY="231.0" />
+      <PasswordField fx:id="txtSenhaCadastro" layoutX="91.0" layoutY="262.0" />
+      <Button fx:id="buttonCadastrar" layoutX="175.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleButtonCadastrar" text="Cadastrar" textFill="#333333" />
+      <TextField fx:id="txtEmailLogin" layoutX="365.0" layoutY="200.0" />
+      <PasswordField fx:id="txtSenhaLogin" layoutX="365.0" layoutY="231.0" />
+      <Button fx:id="buttonLogin" layoutX="468.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleButtonLogin" text="Login" textFill="#333333" />
+      <Label layoutX="46.0" layoutY="206.0" text="Nome" />
+      <Label layoutX="48.0" layoutY="236.0" text="Email" />
+      <Label layoutX="46.0" layoutY="266.0" text="Senha" />
+      <Label layoutX="322.0" layoutY="204.0" text="Email" />
+      <Label layoutX="321.0" layoutY="234.0" text="Senha" />
+      <Label layoutX="365.0" layoutY="155.0" text="Já tem cadastro?" textFill="#333333">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="155.0" text="Sou novo" textFill="#333333">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="97.0" fitWidth="87.0" layoutX="151.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/iconmonstr-home.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="243.0" layoutY="64.0" prefHeight="52.0" prefWidth="163.0" text="S I E S" textFill="#333333">
+         <font>
+            <Font name="Sitka Small" size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

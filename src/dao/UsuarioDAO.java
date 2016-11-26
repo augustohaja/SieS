@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import db.JPAUtil;
@@ -49,4 +50,5 @@ public class UsuarioDAO {
         List<Usuario> list = query.getResultList();
     	return list;
     }
+	
 }
