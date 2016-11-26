@@ -17,7 +17,7 @@ public class appFXMain extends Application {
 
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("TaskFacil");
+        stage.setTitle("S i e S");
         stage.show();
     }
 
