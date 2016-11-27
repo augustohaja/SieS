@@ -11,6 +11,8 @@
 		
 		<!-- Todas as entidades -->
 		<class>models.Usuario</class>
+		<class>models.Categoria</class>
+		<class>models.Material</class> 
 		
 		
 		<!-- Propriedades JDBC -->
