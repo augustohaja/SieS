@@ -92,9 +92,9 @@ public class LoginController implements Initializable {
 				try {
 					if (SHAUtil.geraHash(this.txtSenhaLogin.getText()).equals(usuario.get(0).getSenha()) ){
 						UsuarioSessao.setUser(usuario.get(0));
-						System.out.println("--"+usuario.get(0));
-						//showNextScreen(usuario);
-						ToolMessage.showInformationMessage("","Cadastro realizado com sucesso!");
+						
+						showNextScreen();
+					
 					} else {
 						ToolMessage.showErrorMessage("Não foi possível realizar o seu cadastro.");
 					}
@@ -119,24 +119,10 @@ public class LoginController implements Initializable {
 	}
     
 	
-//	public void showNextScreen(Usuario usuario) throws IOException {
-//		
-//		FXMLLoader loader = new FXMLLoader();
-//		loader.setLocation(TasksDialogController.class.getResource("/views/tasks.fxml"));
-//		
-//		Stage dialogStage = new Stage();
-//		dialogStage.setTitle("Cadastro de Tasks");	
-//		
-//		AnchorPane page = (AnchorPane) loader.load();
-//		Scene scene = new Scene(page);
-//		dialogStage.setScene(scene);
-//		
-//		TasksDialogController controller = loader.getController();
-//		controller.setUsuario(usuario);	
-//		controller.start();
-//			
-//		controller.setDialogStage(dialogStage);
-//		
-//		dialogStage.show();
-//	}
+	public void showNextScreen() throws IOException {
+		
+
+		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/menu.fxml"));
+        this.aPane.getChildren().setAll(ap);
+	}
 }
