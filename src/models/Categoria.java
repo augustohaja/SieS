@@ -33,8 +33,8 @@ public abstract class Categoria {
 		this.tipoConsumo = tipoConsumo;
 	}
 	
-	public Double calculaConsumo(Double qtdM2){
-		return this.tipoConsumo.consumo(qtdM2);
+	public Double calculaConsumo(Double qtdM2,Double qtd){
+		return this.tipoConsumo.consumo(qtdM2,qtd);
 	}
 
 	public Long getId() {
