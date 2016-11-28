@@ -26,7 +26,7 @@
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem fx:id="menuCadastroMaterial" mnemonicParsing="false" onAction="#handleMenuCadastroMaterial" text="Materiais" />
-                  <MenuItem fx:id="menuCadastroCategoria" mnemonicParsing="false" text="Categorias" />
+                  <MenuItem fx:id="menuCadastroCategoria" mnemonicParsing="false" onAction="#handleMenuCadastroCategoria" text="Categorias" />
             </items>
           </Menu>
           <Menu fx:id="menuEstimativa" mnemonicParsing="false" text="Estimativa">

@@ -52,8 +52,15 @@ public class MenuController implements Initializable {
 	
 	@FXML
     public void handleMenuCadastroMaterial() throws IOException {
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println("Materiais");
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroMaterial.fxml"));
+        this.aPane.getChildren().setAll(ap);
+    }
+	
+	@FXML
+    public void handleMenuCadastroCategoria() throws IOException {
+		System.out.println("Categorias");
+		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroCategoria.fxml"));
         this.aPane.getChildren().setAll(ap);
     }
 
