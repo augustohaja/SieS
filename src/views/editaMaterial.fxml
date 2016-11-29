@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroMaterialController">
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditaMaterialController">
    <children>
       <Button fx:id="btnCancela" layoutX="215.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCancel" text="Cancelar" />
-      <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Cadastro de Materiais">
+      <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Edição de Materiais">
          <font>
             <Font size="24.0" />
          </font>
@@ -21,13 +21,13 @@
       <Label layoutX="316.0" layoutY="167.0" prefHeight="25.0" prefWidth="52.0" text="Unidade" />
       <Label layoutX="139.0" layoutY="171.0" text="Rendimento" />
       <Label layoutX="152.0" layoutY="236.0" text="Categoria" />
-      <TextField fx:id="txtNome" layoutX="215.0" layoutY="75.0" prefHeight="25.0" prefWidth="217.0" promptText="Exemplo" />
-      <TextField fx:id="txtPreco" layoutX="215.0" layoutY="125.0" prefHeight="25.0" prefWidth="62.0" promptText="9.99" />
-      <TextField fx:id="txtQuantidade" layoutX="370.0" layoutY="125.0" prefHeight="25.0" prefWidth="62.0" promptText="20" />
-      <TextField fx:id="txtRendimento" layoutX="215.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" promptText="5" />
-      <TextField fx:id="txtUnidade" layoutX="370.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" promptText="kg" />
+      <TextField fx:id="txtNome2" layoutX="215.0" layoutY="75.0" prefHeight="25.0" prefWidth="217.0" text=" "  />
+      <TextField fx:id="txtPreco2" layoutX="215.0" layoutY="125.0" prefHeight="25.0" prefWidth="62.0" text=" "  />
+      <TextField fx:id="txtQuantidade2" layoutX="370.0" layoutY="125.0" prefHeight="25.0" prefWidth="62.0" text=" " />
+      <TextField fx:id="txtRendimento2" layoutX="215.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" text=" "  />
+      <TextField fx:id="txtUnidade2" layoutX="370.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" text=" " />
       <TextField layoutX="213.0" layoutY="232.0" prefHeight="25.0" prefWidth="217.0" />
       <Separator layoutY="47.0" prefHeight="17.0" prefWidth="600.0" />
-      <Button fx:id="btnCadastrar" layoutX="368.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCadastrar" text="Cadastrar" />
+      <Button fx:id="btnEditar" layoutX="368.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonEditar" text="Atualizar" />
    </children>
 </AnchorPane>

@@ -35,10 +35,10 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    	start();
     }
     
-    public void start(){
+    public void start(){  	
     	this.lblNomeUser.setText(String.valueOf(UsuarioSessao.getUser().getNome()));
     }
 	
@@ -53,7 +53,7 @@ public class MenuController implements Initializable {
 	@FXML
     public void handleMenuCadastroMaterial() throws IOException {
 		System.out.println("Materiais");
-		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroMaterial.fxml"));
+		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/material.fxml"));
         this.aPane.getChildren().setAll(ap);
     }
 	
