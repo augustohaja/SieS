@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.CategoriaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Categoria;
+import models.CategoriaDireto;
+import models.CategoriaIndireto;
 import models.Multiplicado;
 import models.Unico;
 
@@ -36,6 +39,11 @@ public class CadastroCategoriaDialogController implements Initializable{
 	private Stage dialogStage;
 	private boolean buttonConfirmarClicked = false;
 	private Categoria categoria;
+	private Integer opc;
+	
+	public void setOpc(Integer opc){
+		this.opc = opc;
+	}
 	
 	public Stage getDialogStage() {
 		return dialogStage;
@@ -60,10 +68,11 @@ public class CadastroCategoriaDialogController implements Initializable{
 	public void setCategoria(Categoria categoria) {
 				
 		this.categoria = categoria;	
-		if (String.valueOf(categoria.getId())!=null)
-			this.labelId.setText(String.valueOf(categoria.getId()));
+		
+		this.labelId.setText(String.valueOf(categoria.getId()));
 		this.textFieldDescricao.setText(categoria.getNome());
 		this.comboTipo.setValue(categoria.getTipoConsumo());
+		this.comboTipo.setDisable(true);
 	}
 
 	@Override
@@ -75,12 +84,17 @@ public class CadastroCategoriaDialogController implements Initializable{
 	@FXML
 	public void handleButtonConfirmar() {
 		this.buttonConfirmarClicked = true;
-
-		this.categoria.setNome(this.textFieldDescricao.getText());
-		if (comboTipo.getSelectionModel().getSelectedItem().equals("Multiplicado")){
-			this.categoria.setTipoConsumo(new Multiplicado());	
+		
+		if (this.opc == 1){
+			this.categoria.setNome(this.textFieldDescricao.getText());
 		} else {
-			this.categoria.setTipoConsumo(new Unico());
+			CategoriaDAO dao = new CategoriaDAO();
+			if (comboTipo.getSelectionModel().getSelectedItem().equals("Multiplicado")){
+				this.categoria = new CategoriaDireto(this.textFieldDescricao.getText());	
+			} else {
+				this.categoria = new CategoriaIndireto(this.textFieldDescricao.getText());
+			}
+			dao.insert(categoria);
 		}
 
 		this.dialogStage.close();

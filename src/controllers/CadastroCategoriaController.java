@@ -49,7 +49,7 @@ public class CadastroCategoriaController implements Initializable {
 	private List<Categoria> categoriaList;
 	private ObservableList<Categoria> categoriaObservableList;
 	private CategoriaDAO dao;
-	private Categoria categoriaSel;
+	private Categoria categoria;
 	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,18 +77,18 @@ public class CadastroCategoriaController implements Initializable {
     
 	public void selectItemTableViewCategorias(Categoria categoria) {
 		System.out.println(categoria);
-		this.categoriaSel = categoria;
+		this.categoria = categoria;
 	}
     
 	@FXML
 	public void handleButtonIncluir() throws IOException {
-		/*Categoria categoria = new CategoriaDireto();
-		boolean buttonConfirmarClicked = showAnchorPaneCadastroCategoriaDialog(categoria);
+		//Categoria categoria = new CategoriaDireto();
+		boolean buttonConfirmarClicked = showAnchorPaneCadastroCategoriaDialog(0);
 		
 		if (buttonConfirmarClicked) {
-			this.dao.insert(categoria);
+		//	this.dao.insert(categoria);
 			loadTableViewCategorias();
-		}*/
+		}
 	}
 	
 	@FXML
@@ -101,21 +101,22 @@ public class CadastroCategoriaController implements Initializable {
 			errorAlert.show();
 		}
 		else {
-			boolean buttonConfirmarClicked = showAnchorPaneCadastroCategoriaDialog(categoria);
+			boolean buttonConfirmarClicked = showAnchorPaneCadastroCategoriaDialog(1);
 			
 			if (buttonConfirmarClicked) {
 				this.dao.update(categoria);
 				loadTableViewCategorias();
 			}
 		}
+		this.tableViewCategorias.refresh();
 	}
 
 	
 	@FXML
 	public void handleButtonExcluir() {
-		Categoria task = this.tableViewCategorias.getSelectionModel().getSelectedItem();
+		Categoria categoria = this.tableViewCategorias.getSelectionModel().getSelectedItem();
 		
-		if (task == null) {
+		if (categoria == null) {
 			Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 			errorAlert.setContentText("Por favor, escolha uma categoria na Tabela!");
 			errorAlert.show();
@@ -127,13 +128,13 @@ public class CadastroCategoriaController implements Initializable {
 			
 			Optional<ButtonType> result = confirmationAlert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				this.dao.delete(task);
+				this.dao.delete(categoria);
 				loadTableViewCategorias();
 			}
 		}
 	}
 
-	public boolean showAnchorPaneCadastroCategoriaDialog(Categoria categoria) throws IOException {
+	public boolean showAnchorPaneCadastroCategoriaDialog(Integer opc) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(CadastroCategoriaDialogController.class.getResource("/views/CadastroCategoriaDialog.fxml"));
 		AnchorPane page = (AnchorPane) loader.load();
@@ -145,7 +146,12 @@ public class CadastroCategoriaController implements Initializable {
 		
 		CadastroCategoriaDialogController controller = loader.getController();
 		controller.setDialogStage(dialogStage);
-		controller.setCategoria(categoria);
+		
+		if (opc == 1)
+			controller.setCategoria(categoria);
+		
+		controller.setOpc(opc);
+		
 		
 		dialogStage.showAndWait();
 		
