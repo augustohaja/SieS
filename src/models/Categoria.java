@@ -53,8 +53,8 @@ public abstract class Categoria {
 		this.nome = nome;
 	}
 
-	public Consumo getTipoConsumo() {
-		return tipoConsumo;
+	public String getTipoConsumo() {
+		return tipoConsumo.getConsumo();
 	}
 
 	public void setTipoConsumo(Consumo tipoConsumo) {
