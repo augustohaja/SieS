@@ -81,7 +81,7 @@ public class MaterialController implements Initializable {
 		this.cQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEmbalagem"));
 		this.cUnidade.setCellValueFactory(new PropertyValueFactory<>("undMedida"));
 		this.cRendimento.setCellValueFactory(new PropertyValueFactory<>("coefM2"));
-		this.cCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		this.cCategoria.setCellValueFactory(new PropertyValueFactory<>("nomeCategoria"));
 
 		this.materialObservableList = FXCollections.observableArrayList(this.loadMaterial);
 		this.tableViewMaterial.setItems(this.materialObservableList);
