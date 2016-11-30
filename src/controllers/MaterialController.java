@@ -93,13 +93,7 @@ public class MaterialController implements Initializable {
 	
 	
 	@FXML
-	public void handleButtonEditaMaterial() throws IOException {
-//		EditaMaterialController edita = new EditaMaterialController();
-//		edita.setMaterial(this.material);
-//		edita.start();
-//		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/editaMaterial.fxml"));
-//        this.aPane.getChildren().setAll(ap);
-//        
+	public void handleButtonEditaMaterial() throws IOException {        
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(EditaMaterialController.class.getResource("/views/editaMaterial.fxml"));
 		AnchorPane page = (AnchorPane) loader.load();

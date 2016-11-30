@@ -12,9 +12,9 @@ public class Material {
 	private Long id;
 	private String nome;
 	private Double preco;
-	private Double qtdEmbalagem;
-	private String undMedida;
-	private Double coefM2;
+	private Double qtdEmbalagem; // 5, 4 
+	private String undMedida; //unidade, kilos
+	private Double coefM2; //rendimento
 	
 	@ManyToOne
 	private Categoria categoria;

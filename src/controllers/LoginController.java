@@ -88,7 +88,8 @@ public class LoginController implements Initializable {
 		if(!this.txtEmailLogin.getText().equals("") && !this.txtSenhaLogin.getText().equals("")){
 			List<Usuario> usuario = null;
 				usuario = this.usuarioDAO.searchByEmail(this.txtEmailLogin.getText());
-			if (usuario != null) {
+			if (usuario.size() > 0) {
+				System.out.println("--"+usuario);
 				try {
 					if (SHAUtil.geraHash(this.txtSenhaLogin.getText()).equals(usuario.get(0).getSenha()) ){
 						UsuarioSessao.setUser(usuario.get(0));
@@ -96,14 +97,16 @@ public class LoginController implements Initializable {
 						showNextScreen();
 					
 					} else {
-						ToolMessage.showErrorMessage("Não foi possível realizar o seu cadastro.");
+						ToolMessage.showErrorMessage("Verifique usuário e senha.");
 					}
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}
+			} else {
+				ToolMessage.showErrorMessage("Não foi possível realizar o login");
 			}
 		} else {
-			ToolMessage.showErrorMessage("Não foi possível realizar o seu cadastro");
+			ToolMessage.showErrorMessage("Não foi possível realizar o login");
 		}
 	}
 	

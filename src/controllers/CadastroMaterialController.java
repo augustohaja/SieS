@@ -4,15 +4,22 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import dao.CategoriaDAO;
 import dao.MaterialDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import models.Categoria;
 import models.Material;
 import tools.DoubleValidator;
 import tools.ToolMessage;
@@ -25,6 +32,8 @@ public class CadastroMaterialController implements Initializable {
 	@FXML
 	private Button btnCancela;
 	@FXML
+	private ComboBox<String> comboCategoria;
+	@FXML
 	private TextField txtNome;
 	@FXML
 	private TextField txtPreco;
@@ -34,11 +43,27 @@ public class CadastroMaterialController implements Initializable {
 	private TextField txtRendimento;
 	@FXML
 	private TextField txtUnidade;
+	private ObservableList<String> categoriaObservableList;
+	private List<Categoria> loadCategoria;
+	private List<String> listaCategorias = new ArrayList<String>();
 	
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    	CategoriaDAO categoriaDAO = new CategoriaDAO();
+		this.loadCategoria = categoriaDAO.all();
+		
+		for (Categoria categorias : loadCategoria) {
+			System.out.println(categorias.getNome());
+			listaCategorias.add(categorias.getNome());
+//			System.out.println(listaCategorias);
+		}
+		
+		this.categoriaObservableList  = FXCollections.observableArrayList(listaCategorias);
+		this.comboCategoria.getItems().addAll(this.categoriaObservableList);
+//		this.categoriaObservableList = FXCollections.observableArrayList(this.loadCategoria.get(0).getNome());
+//		this.comboCategoria.getItems().addAll(this.categoriaObservableList);
+//		this.comboCategoria.setItems(this.categoriaObservableList);
     }
     
 	@FXML
