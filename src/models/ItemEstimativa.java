@@ -1,0 +1,74 @@
+package models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class ItemEstimativa {
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
+	private Long id;
+	private Double qtd;
+	private Material material;
+	private Double totalQtd;
+	private Double totalVlr;
+	
+	@ManyToOne
+	private Estimativa estimativa;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Double getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(Double qtd) {
+		this.qtd = qtd;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	public Double getTotalQtd() {
+		return totalQtd;
+	}
+
+	public void setTotalQtd(Double totalQtd) {
+		this.totalQtd = totalQtd;
+	}
+
+	public Double getTotalVlr() {
+		return totalVlr;
+	}
+
+	public void setTotalVlr(Double totalVlr) {
+		this.totalVlr = totalVlr;
+	}
+
+	public Estimativa getEstimativa() {
+		return estimativa;
+	}
+
+	public void setEstimativa(Estimativa estimativa) {
+		this.estimativa = estimativa;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemEstimativa [id=" + id + ", qtd=" + qtd + ", material=" + material + ", totalQtd=" + totalQtd
+				+ ", totalVlr=" + totalVlr + ", estimativa=" + estimativa + "]";
+	}
+}
