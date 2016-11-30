@@ -13,6 +13,8 @@
 		<class>models.Usuario</class>
 		<class>models.Categoria</class>
 		<class>models.Material</class> 
+		<class>models.Estimativa</class>
+		<class>models.ItemEstimativa</class> 
 		
 		
 		<!-- Propriedades JDBC -->
