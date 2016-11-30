@@ -89,7 +89,6 @@ public class LoginController implements Initializable {
 			List<Usuario> usuario = null;
 				usuario = this.usuarioDAO.searchByEmail(this.txtEmailLogin.getText());
 			if (usuario.size() > 0) {
-				System.out.println("--"+usuario);
 				try {
 					if (SHAUtil.geraHash(this.txtSenhaLogin.getText()).equals(usuario.get(0).getSenha()) ){
 						UsuarioSessao.setUser(usuario.get(0));

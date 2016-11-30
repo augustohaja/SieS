@@ -20,6 +20,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.Categoria;
+import models.CategoriaDireto;
+import models.CategoriaIndireto;
 import models.Material;
 import tools.DoubleValidator;
 import tools.ToolMessage;
@@ -54,16 +56,11 @@ public class CadastroMaterialController implements Initializable {
 		this.loadCategoria = categoriaDAO.all();
 		
 		for (Categoria categorias : loadCategoria) {
-			System.out.println(categorias.getNome());
 			listaCategorias.add(categorias.getNome());
-//			System.out.println(listaCategorias);
 		}
 		
 		this.categoriaObservableList  = FXCollections.observableArrayList(listaCategorias);
 		this.comboCategoria.getItems().addAll(this.categoriaObservableList);
-//		this.categoriaObservableList = FXCollections.observableArrayList(this.loadCategoria.get(0).getNome());
-//		this.comboCategoria.getItems().addAll(this.categoriaObservableList);
-//		this.comboCategoria.setItems(this.categoriaObservableList);
     }
     
 	@FXML
@@ -80,7 +77,8 @@ public class CadastroMaterialController implements Initializable {
 				!txtPreco.getText().equals("") && 
 				!txtQuantidade.getText().equals("") && 
 				!txtRendimento.getText().equals("") &&
-				!txtUnidade.getText().equals("")){
+				!txtUnidade.getText().equals("") &&
+				!comboCategoria.getSelectionModel().isEmpty()){
 			
 			DoubleValidator db = new DoubleValidator();
 			if(db.validate(this.txtPreco.getText()) && 
@@ -92,7 +90,8 @@ public class CadastroMaterialController implements Initializable {
 				material.setQtdEmbalagem(Double.parseDouble(this.txtQuantidade.getText()));
 				material.setCoefM2(Double.parseDouble(this.txtRendimento.getText()));
 				material.setUndMedida(this.txtUnidade.getText());
-				//this.material.setCategoria(this.categoria);
+				
+				material.setCategoria(getCategoria(comboCategoria.getSelectionModel().getSelectedItem()));
 				
 				dao.insert(material);;
 				ToolMessage.showInformationMessage("","Cadastro realizado com sucesso!");
@@ -104,6 +103,11 @@ public class CadastroMaterialController implements Initializable {
 		} else {
 			ToolMessage.showInformationMessage("","Não foi possível realizar o seu cadastro");
 		}
+	}
+	
+	public Categoria getCategoria(String nome){
+		CategoriaDAO catDAO = new CategoriaDAO();
+		return catDAO.searchByName(comboCategoria.getSelectionModel().getSelectedItem()).get(0);	
 	}
 	
 	public void limpaCamposCadastro() {

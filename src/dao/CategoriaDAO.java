@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import db.JPAUtil;
 import models.Categoria;
+import models.Usuario;
 
 public class CategoriaDAO {
 	private EntityManager manager;
@@ -43,4 +44,10 @@ public class CategoriaDAO {
         List<Categoria> list = query.getResultList();
     	return list;
     }
+	
+	public List<Categoria>  searchByName(String nome){
+		Query query = manager.createQuery("SELECT s FROM Categoria s WHERE nome = '" + nome.toString() + "'");
+		List<Categoria>  itemCategoria = query.getResultList();
+		return itemCategoria;
+	}
 }
