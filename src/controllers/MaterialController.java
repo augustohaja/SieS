@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.Categoria;
 import models.Material;
 
 public class MaterialController implements Initializable {	
@@ -80,7 +81,7 @@ public class MaterialController implements Initializable {
 		this.cQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEmbalagem"));
 		this.cUnidade.setCellValueFactory(new PropertyValueFactory<>("undMedida"));
 		this.cRendimento.setCellValueFactory(new PropertyValueFactory<>("coefM2"));
-		this.cCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		this.cCategoria.setCellValueFactory(new PropertyValueFactory<>("nomeCategoria"));
 
 		this.materialObservableList = FXCollections.observableArrayList(this.loadMaterial);
 		this.tableViewMaterial.setItems(this.materialObservableList);
@@ -134,7 +135,7 @@ public class MaterialController implements Initializable {
 			if (result.get() == ButtonType.OK) {
 				MaterialDAO materialDAO = new MaterialDAO();
 				materialDAO.delete(this.material);
-				tableViewMaterial.refresh();
+				listaMateriais();
 			}
 		}
 	}

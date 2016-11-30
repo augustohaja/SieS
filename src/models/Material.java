@@ -82,6 +82,10 @@ public class Material {
 		this.coefM2 = coefM2;
 	}
 
+	public String getNomeCategoria() {
+		return this.categoria.getNome();
+	}
+	
 	public Categoria getCategoria() {
 		return categoria;
 	}
