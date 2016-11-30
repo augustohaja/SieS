@@ -63,5 +63,12 @@ public class MenuController implements Initializable {
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroCategoria.fxml"));
         this.aPane.getChildren().setAll(ap);
     }
+	
+	@FXML
+    public void handleMenuEstimativa() throws IOException {
+		System.out.println("Estimativa");
+		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/estimativa.fxml"));
+        this.aPane.getChildren().setAll(ap);
+    }
 
 }

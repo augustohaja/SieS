@@ -8,11 +8,12 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ItemEstimativa {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Double qtd;
 	private Material material;
-	
+
 	@ManyToOne
 	private Estimativa estimativa;
 
@@ -32,14 +33,14 @@ public class ItemEstimativa {
 		this.qtd = qtd;
 	}
 
-	public Double getEstimado(){
+	public Double getEstimado() {
 		return material.getCategoria().calculaConsumo(material.getCoefM2(), qtd);
 	}
-	
-	public Double getTotal(){
-		return this.getEstimado()*this.material.getPreco();
+
+	public Double getTotal() {
+		return this.getEstimado() * this.material.getPreco();
 	}
-	
+
 	public Material getMaterial() {
 		return material;
 	}
@@ -58,6 +59,7 @@ public class ItemEstimativa {
 
 	@Override
 	public String toString() {
-		return "ItemEstimativa [id=" + id + ", qtd=" + qtd + ", material=" + material + ", estimativa=" + estimativa + "]";
+		return "ItemEstimativa [id=" + id + ", qtd=" + qtd + ", material=" + material + ", estimativa=" + estimativa
+				+ "]";
 	}
 }
