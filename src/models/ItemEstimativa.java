@@ -12,8 +12,6 @@ public class ItemEstimativa {
 	private Long id;
 	private Double qtd;
 	private Material material;
-	private Double totalQtd;
-	private Double totalVlr;
 	
 	@ManyToOne
 	private Estimativa estimativa;
@@ -34,28 +32,20 @@ public class ItemEstimativa {
 		this.qtd = qtd;
 	}
 
+	public Double getEstimado(){
+		return material.getCategoria().calculaConsumo(material.getCoefM2(), qtd);
+	}
+	
+	public Double getTotal(){
+		return this.getEstimado()*this.material.getPreco();
+	}
+	
 	public Material getMaterial() {
 		return material;
 	}
 
 	public void setMaterial(Material material) {
 		this.material = material;
-	}
-
-	public Double getTotalQtd() {
-		return totalQtd;
-	}
-
-	public void setTotalQtd(Double totalQtd) {
-		this.totalQtd = totalQtd;
-	}
-
-	public Double getTotalVlr() {
-		return totalVlr;
-	}
-
-	public void setTotalVlr(Double totalVlr) {
-		this.totalVlr = totalVlr;
 	}
 
 	public Estimativa getEstimativa() {
@@ -68,7 +58,6 @@ public class ItemEstimativa {
 
 	@Override
 	public String toString() {
-		return "ItemEstimativa [id=" + id + ", qtd=" + qtd + ", material=" + material + ", totalQtd=" + totalQtd
-				+ ", totalVlr=" + totalVlr + ", estimativa=" + estimativa + "]";
+		return "ItemEstimativa [id=" + id + ", qtd=" + qtd + ", material=" + material + ", estimativa=" + estimativa + "]";
 	}
 }
