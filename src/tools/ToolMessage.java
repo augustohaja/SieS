@@ -18,7 +18,7 @@ public class ToolMessage {
 	
 	public static Optional<ButtonType> showErrorMessage(String message){
 		 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-		confirmationAlert.setHeaderText("Remoção de Tarefa");
+		confirmationAlert.setHeaderText(" ");
 		confirmationAlert.setContentText("Deseja realmente apagar a tarefa?");
 		
 		Optional<ButtonType> result = confirmationAlert.showAndWait();

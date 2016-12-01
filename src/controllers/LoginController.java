@@ -96,16 +96,16 @@ public class LoginController implements Initializable {
 						showNextScreen();
 					
 					} else {
-						ToolMessage.showErrorMessage("Verifique usuário e senha.");
+						ToolMessage.showInformationMessage("","Verifique usuário e senha.");
 					}
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}
 			} else {
-				ToolMessage.showErrorMessage("Não foi possível realizar o login");
+				ToolMessage.showInformationMessage("","Não foi possível realizar o login");
 			}
 		} else {
-			ToolMessage.showErrorMessage("Não foi possível realizar o login");
+			ToolMessage.showInformationMessage("","Não foi possível realizar o login");
 		}
 	}
 	
