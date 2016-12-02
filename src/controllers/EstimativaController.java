@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Estimativa;
+import models.Sessao;
 
 public class EstimativaController implements Initializable {
 
@@ -109,18 +110,12 @@ public class EstimativaController implements Initializable {
 			//this.label2.setText("Você não tem tarefas cadastradas!");
 		}
 		else {
+			Sessao sessao = new Sessao();
 			this.estimativa = this.tableViewEstimativa.getSelectionModel().getSelectedItem();
+			Sessao.setEstimativa(this.estimativa);
 			
-	        FXMLLoader loader = new FXMLLoader();
-	    	loader.setLocation(CadastroItemEstimativaController.class.getResource("/views/cadastroItemEstimativa.fxml"));
-	    	AnchorPane page = (AnchorPane) loader.load();
-	    		
-	    	this.aPane.getChildren().setAll(page);
-	    	
-	    	CadastroItemEstimativaController controller = loader.getController();
-	    	
-	    	controller.setEstimativa(estimativa);
-	    	controller.setDisable();
+			AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/visualizarEstimativaDialog.fxml"));
+	        this.aPane.getChildren().setAll(ap);
 		}
 	}
 

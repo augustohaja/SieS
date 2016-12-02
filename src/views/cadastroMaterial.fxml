@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroMaterialController">
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroMaterialController">
    <children>
-      <Button fx:id="btnCancela" layoutX="215.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCancel" text="Cancelar" />
+      <Button fx:id="btnCancela" layoutX="246.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCancel" prefHeight="25.0" prefWidth="67.0" text="Cancelar" />
       <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Cadastro de Materiais">
          <font>
             <Font size="24.0" />
@@ -28,7 +28,7 @@
       <TextField fx:id="txtRendimento" layoutX="215.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" promptText="5" />
       <TextField fx:id="txtUnidade" layoutX="370.0" layoutY="167.0" prefHeight="25.0" prefWidth="62.0" promptText="kg" />
       <Separator layoutY="47.0" prefHeight="17.0" prefWidth="600.0" />
-      <Button fx:id="btnCadastrar" layoutX="368.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCadastrar" text="Cadastrar" />
+      <Button fx:id="btnCadastrar" layoutX="342.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonCadastrar" text="Cadastrar" />
       <ComboBox fx:id="comboCategoria" layoutX="215.0" layoutY="232.0" prefHeight="25.0" prefWidth="217.0" />
    </children>
 </AnchorPane>

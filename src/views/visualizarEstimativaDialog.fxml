@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VisualizarEstimativaController">
+   <children>
+      <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Visualizar Estimativa">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNome" layoutX="184.0" layoutY="74.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="lblData" layoutX="185.0" layoutY="124.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Separator layoutY="47.0" prefHeight="17.0" prefWidth="600.0" />
+      <TableView fx:id="tableViewCadastroItemEstimativa" layoutX="17.0" layoutY="173.0" prefHeight="175.0" prefWidth="565.0">
+        <columns>
+          <TableColumn fx:id="cId" prefWidth="45.0" text="Id" />
+          <TableColumn fx:id="cDescricao" prefWidth="239.0" text="Descrição" />
+            <TableColumn fx:id="cQtdem2" prefWidth="77.0" text="Qtde m²" />
+            <TableColumn fx:id="cEstimado" minWidth="2.0" prefWidth="79.0" text="Estimado" />
+            <TableColumn fx:id="cVlrTotal" minWidth="0.0" prefWidth="124.0" text="Vlr Total" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnGravar" layoutX="492.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonVoltar" prefHeight="25.0" prefWidth="76.0" text="Voltar" />
+      <Label layoutX="110.0" layoutY="74.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="122.0" layoutY="124.0" text="Data:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
