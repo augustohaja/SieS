@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import db.JPAUtil;
+import models.Categoria;
 import models.Material;
 
 public class MaterialDAO {
@@ -43,5 +44,11 @@ public class MaterialDAO {
         List<Material> list = query.getResultList();
     	return list;
     }
+	
+	public List<Material>  searchByName(String nome){
+		Query query = manager.createQuery("SELECT s FROM Material s WHERE nome = '" + nome.toString() + "'");
+		List<Material>  itemMaterial = query.getResultList();
+		return itemMaterial;
+	}
 
 }

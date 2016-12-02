@@ -49,6 +49,16 @@ public class Estimativa {
 	public void setLista(List<ItemEstimativa> lista) {
 		this.lista = lista;
 	}
+	
+	public void setItemEstimativa(ItemEstimativa itemEstimativa){
+			this.lista.add(itemEstimativa);
+	}
+
+	public void removeItemEstimativa(ItemEstimativa itemEstimativa){
+		if (this.lista.contains(itemEstimativa)){
+			this.lista.remove(itemEstimativa);
+		}
+	}
 
 	@Override
 	public String toString() {

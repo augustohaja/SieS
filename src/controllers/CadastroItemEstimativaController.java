@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import models.Estimativa;
 import models.ItemEstimativa;
 
 public class CadastroItemEstimativaController implements Initializable  {
@@ -49,9 +50,12 @@ public class CadastroItemEstimativaController implements Initializable  {
 	private List<ItemEstimativa> loadItemEstimativa;
 	
 	private ItemEstimativa itemEstimativa;
+	
+	private Estimativa estimativa = new Estimativa();;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+//		estimativa = new Estimativa();
 		listaItemEstimativa();
         this.tableViewCadastroItemEstimativa.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selectItemTableViewItemEstimativa(newValue));
@@ -62,9 +66,16 @@ public class CadastroItemEstimativaController implements Initializable  {
 	}
 	
 	@FXML
-	public void handleButtonCadastroMaterial() throws IOException {
+	public void handleButtonInserirItem() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(InserirItemEstimativaController.class.getResource("/views/InserirItemEstimativaController.fxml"));
+		
+		InserirItemEstimativaController controller = loader.getController();
+		controller.setEstimativa(estimativa);
+		
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/inserirItemEstimativa.fxml"));
         this.aPane.getChildren().setAll(ap);
+        
         this.tableViewCadastroItemEstimativa.refresh();
 	}
 
@@ -110,7 +121,7 @@ public class CadastroItemEstimativaController implements Initializable  {
 	}
 	
 	@FXML
-	public void handleGravar() throws IOException {		
+	public void handleButtonGravar() throws IOException {		
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/estimativa.fxml"));
         this.aPane.getChildren().setAll(ap);
 	}
