@@ -36,6 +36,10 @@ public class ItemEstimativa {
 		this.qtd = qtd;
 	}
 
+	public String getDescricao(){
+		return this.material.getNome();
+	}
+	
 	public Double getEstimado() {
 		return material.getCategoria().calculaConsumo(material.getCoefM2(), qtd);
 	}
