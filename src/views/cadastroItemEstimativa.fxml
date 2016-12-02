@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroItemEstimativaController">
    <children>
-      <Button fx:id="btnInsere" layoutX="200.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonInserirItem" text="Inserir Item" />
+      <Button fx:id="btnInsere" layoutX="200.0" layoutY="345.0" mnemonicParsing="false" onAction="#showAnchorPaneCadastroEstimativaDialog" text="Inserir Item" />
       <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Cadastro de Estimativa">
          <font>
             <Font size="24.0" />
@@ -21,7 +21,7 @@
       <Label layoutX="172.0" layoutY="129.0" text="Data" />
       <TextField fx:id="txtNome" layoutX="215.0" layoutY="75.0" prefHeight="25.0" prefWidth="217.0" promptText="Nome da Estimativa" />
       <Separator layoutY="47.0" prefHeight="17.0" prefWidth="600.0" />
-      <Button fx:id="btnDeleta" layoutX="305.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonDeletar" prefHeight="31.0" prefWidth="95.0" text="Excluir" />
+      <Button fx:id="btnDeleta" layoutX="305.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonExcluir" prefHeight="31.0" prefWidth="95.0" text="Excluir" />
       <TextField fx:id="txtData" layoutX="215.0" layoutY="124.0" prefHeight="25.0" prefWidth="217.0" promptText="Data da Estimativa" />
       <Button fx:id="btnSair" layoutX="460.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonVoltar" text="Sair" />
       <TableView fx:id="tableViewCadastroItemEstimativa" layoutX="17.0" layoutY="173.0" prefHeight="158.0" prefWidth="565.0">

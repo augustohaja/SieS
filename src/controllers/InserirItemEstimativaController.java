@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import models.Categoria;
 import models.Estimativa;
 import models.ItemEstimativa;
@@ -41,6 +42,27 @@ public class InserirItemEstimativaController implements Initializable {
 	private List<String> listaMaterial;
 	
 	private ObservableList<String> materialObservableList;
+	
+	private Stage dialogStage;
+	
+	private boolean buttonConfirmarClicked = false;
+
+	
+	public Stage getDialogStage() {
+		return dialogStage;
+	}
+
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
+
+	public boolean isButtonConfirmarClicked() {
+		return buttonConfirmarClicked;
+	}
+
+	public void setButtonConfirmarClicked(boolean buttonConfirmarClicked) {
+		this.buttonConfirmarClicked = buttonConfirmarClicked;
+	}
 
 	public Estimativa getEstimativa() {
 		return estimativa;
