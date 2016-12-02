@@ -170,6 +170,10 @@ public class CadastroItemEstimativaController implements Initializable  {
 			Optional<ButtonType> result = confirmationAlert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				this.estimativa.removeItemEstimativa(itemEstimativa);
+				
+				ItemEstimativaDAO daoItem = new ItemEstimativaDAO();
+				daoItem.delete(itemEstimativa);
+				
 				loadTableViewItemEstimativas();
 			}
 		}
