@@ -7,6 +7,8 @@ import javax.persistence.Query;
 
 import db.JPAUtil;
 import models.Estimativa;
+import models.ItemEstimativa;
+import models.Usuario;
 
 public class EstimativaDAO {
 	private EntityManager manager;
@@ -45,4 +47,9 @@ public class EstimativaDAO {
 		return list;
 	}
 
+	public List<ItemEstimativa> searchByEstimativa(Long id){
+		Query query = manager.createQuery("SELECT s FROM ItemEstimativa s WHERE estimativa_id = '" + id.toString() + "'");
+		List<ItemEstimativa> list = query.getResultList();
+		return list;
+	}
 }

@@ -2,10 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import dao.CategoriaDAO;
+import dao.ItemEstimativaDAO;
 import dao.MaterialDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,7 @@ public class InserirItemEstimativaController implements Initializable {
 	private ComboBox<String> comboMaterial;
 	@FXML
 	private TextField txtQuantidade;
+	
 	
 	private Estimativa estimativa;
 	
@@ -65,7 +68,7 @@ public class InserirItemEstimativaController implements Initializable {
 	}
 
 	public Estimativa getEstimativa() {
-		return estimativa;
+		return this.estimativa;
 	}
 
 	public void setEstimativa(Estimativa estimativa) {
@@ -77,8 +80,10 @@ public class InserirItemEstimativaController implements Initializable {
 		
 		MaterialDAO materialDAO = new MaterialDAO();
 		this.loadMaterial = materialDAO.all();
+		this.listaMaterial = new ArrayList<String>();
 		
 		for (Material material : loadMaterial) {
+			System.out.println("material.getNome");
 			listaMaterial.add(material.getNome());
 		}
 		
@@ -87,13 +92,19 @@ public class InserirItemEstimativaController implements Initializable {
 	}
 	
 	public void handleButtonCadastrar() throws IOException {
+		ItemEstimativaDAO daoItem = new ItemEstimativaDAO();
+		this.buttonConfirmarClicked = true;
+		
 		ItemEstimativa itemEstimativa = new ItemEstimativa();
 		itemEstimativa.setMaterial(getMaterial(comboMaterial.getSelectionModel().getSelectedItem()));
 		itemEstimativa.setQtd(Double.parseDouble(this.txtQuantidade.getText()));
+		itemEstimativa.setEstimativa(estimativa);
+		
+		daoItem.insert(itemEstimativa);
+		
 		this.estimativa.setItemEstimativa(itemEstimativa);
 		
-		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroItemEstimativa.fxml"));
-        this.aPane.getChildren().setAll(ap);
+		this.dialogStage.close();
 	}
 	
 	public Material getMaterial(String nome){
@@ -103,8 +114,7 @@ public class InserirItemEstimativaController implements Initializable {
 	
 	@FXML
 	public void handleButtonVoltar() throws IOException {
-		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroItemEstimativa.fxml"));
-        this.aPane.getChildren().setAll(ap);
+		this.dialogStage.close();
 	}
 	
 	

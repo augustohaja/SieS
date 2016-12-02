@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -51,7 +52,14 @@ public class Estimativa {
 	}
 	
 	public void setItemEstimativa(ItemEstimativa itemEstimativa){
-			this.lista.add(itemEstimativa);
+			if (this.lista == null){
+				System.out.println("É Nulo");
+				this.lista = new ArrayList<ItemEstimativa>();
+				this.lista.add(itemEstimativa);
+			} else {
+				System.out.println("Não é Nulo");
+				this.lista.add(itemEstimativa);
+			}
 	}
 
 	public void removeItemEstimativa(ItemEstimativa itemEstimativa){

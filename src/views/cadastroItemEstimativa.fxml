@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroItemEstimativaController">
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadastroItemEstimativaController">
    <children>
-      <Button fx:id="btnInsere" layoutX="200.0" layoutY="345.0" mnemonicParsing="false" onAction="#showAnchorPaneCadastroEstimativaDialog" text="Inserir Item" />
+      <Button fx:id="btnInsere" layoutX="200.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonIncluir" text="Inserir Item" />
       <Label layoutX="184.0" layoutY="14.0" prefHeight="35.0" prefWidth="265.0" text="Cadastro de Estimativa">
          <font>
             <Font size="24.0" />

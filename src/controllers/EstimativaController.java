@@ -61,7 +61,7 @@ public class EstimativaController implements Initializable {
 	public void handleButtonInserirEstimativa() throws IOException {
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/cadastroItemEstimativa.fxml"));
         this.aPane.getChildren().setAll(ap);
-        this.tableViewEstimativa.refresh();
+        //this.tableViewEstimativa.refresh();
 	}
 	
 	private void listaMateriais() {

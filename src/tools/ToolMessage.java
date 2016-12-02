@@ -19,7 +19,7 @@ public class ToolMessage {
 	public static Optional<ButtonType> showErrorMessage(String message){
 		 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
 		confirmationAlert.setHeaderText(" ");
-		confirmationAlert.setContentText("Deseja realmente apagar a tarefa?");
+		confirmationAlert.setContentText(message);
 		
 		Optional<ButtonType> result = confirmationAlert.showAndWait();
 		return result;

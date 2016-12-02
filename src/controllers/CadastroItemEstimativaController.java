@@ -20,12 +20,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Categoria;
 import models.Estimativa;
 import models.ItemEstimativa;
+import tools.ToolMessage;
 
 public class CadastroItemEstimativaController implements Initializable  {
 
@@ -37,6 +39,10 @@ public class CadastroItemEstimativaController implements Initializable  {
 	private Button btnSair;
 	@FXML
 	private Button btnDeleta;
+	@FXML
+	private TextField txtNome;
+	@FXML
+	private TextField txtData;
 	@FXML
 	private TableView<ItemEstimativa> tableViewCadastroItemEstimativa;
 	@FXML
@@ -50,27 +56,21 @@ public class CadastroItemEstimativaController implements Initializable  {
 	@FXML
 	private TableColumn<ItemEstimativa, String> cVlrTotal;
 	
+	
 	private ObservableList<ItemEstimativa> ItemEstimativaObservableList;
 	
-	private List<ItemEstimativa> loadItemEstimativa;
 	
 	private List<ItemEstimativa> itemEstimativaList;
 	
 	private ItemEstimativa itemEstimativa;
 	
-	private ItemEstimativaDAO itemEstimativaDAO;
-	
 	private Estimativa estimativa = new Estimativa();
 	
-	private ItemEstimativaDAO dao;
-	
-	private EstimativaDAO daoEstimativa;
+	private EstimativaDAO daoEstimativa = new EstimativaDAO();
 
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
     	System.out.println("Inicializando...");
-		this.dao = new ItemEstimativaDAO();
-		this.daoEstimativa = new EstimativaDAO();
 		loadTableViewItemEstimativas();
 		
 		// Listen acionado diante de quaisquer alterações na seleção de itens do TableView
@@ -79,18 +79,20 @@ public class CadastroItemEstimativaController implements Initializable  {
     }
 	
 	private void loadTableViewItemEstimativas() {
-		this.itemEstimativaList = this.dao.all();
+		if (estimativa.getId() != null){
+			this.itemEstimativaList = this.daoEstimativa.searchByEstimativa(estimativa.getId());
+
+			// 	a string é o nome do atributo da classe do objeto
+			this.cId.setCellValueFactory(new PropertyValueFactory<>("id"));
+			this.cDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+			this.cQtdem2.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+			this.cEstimado.setCellValueFactory(new PropertyValueFactory<>("estimado"));
+			this.cVlrTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
 		
-		// a string é o nome do atributo da classe do objeto
-		this.cId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		this.cDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-		this.cQtdem2.setCellValueFactory(new PropertyValueFactory<>("qtd"));
-		this.cEstimado.setCellValueFactory(new PropertyValueFactory<>("estimado"));
-		this.cVlrTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-		
-		// conversão de ArrayList para ObservableList
-		this.ItemEstimativaObservableList = FXCollections.observableArrayList(this.itemEstimativaList);
-		this.tableViewCadastroItemEstimativa.setItems(this.ItemEstimativaObservableList);
+			// 	conversão de ArrayList para ObservableList
+			this.ItemEstimativaObservableList = FXCollections.observableArrayList(this.itemEstimativaList);
+			this.tableViewCadastroItemEstimativa.setItems(this.ItemEstimativaObservableList);
+		}
 	}
 	
 	public void selectItemTableViewItemEstimativa(ItemEstimativa itemEstimativa) {
@@ -101,10 +103,25 @@ public class CadastroItemEstimativaController implements Initializable  {
 	@FXML
 	public void handleButtonIncluir() throws IOException {
 		//Categoria categoria = new CategoriaDireto();
-		boolean buttonConfirmarClicked = showAnchorPaneCadastroEstimativaDialog(0);
 		
-		if (buttonConfirmarClicked) {
-		//	this.dao.insert(categoria);
+		if (txtNome.getText().equals("") || (txtData.getText().equals(""))){
+			ToolMessage.showInformationMessage("Aviso","Prencha os dados campos Nome e Data da estimativa!");
+		} else {
+			if (estimativa.getId() == null){
+				estimativa.setNome(txtNome.getText());
+				estimativa.setData(txtData.getText());
+				daoEstimativa.insert(estimativa);
+			}
+			System.out.println(estimativa.toString());
+			this.daoEstimativa.update(estimativa);
+			System.out.println(estimativa.toString());
+			boolean buttonConfirmarClicked = showAnchorPaneCadastroEstimativaDialog(0);
+			
+			if (buttonConfirmarClicked) {
+				System.out.println(estimativa.toString());
+				System.out.println(estimativa.getLista().size());
+				this.daoEstimativa.update(estimativa);
+			}
 			loadTableViewItemEstimativas();
 		}
 	}
@@ -125,7 +142,7 @@ public class CadastroItemEstimativaController implements Initializable  {
 			
 			Optional<ButtonType> result = confirmationAlert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				this.dao.delete(itemEstimativa);
+				this.estimativa.removeItemEstimativa(itemEstimativa);
 				loadTableViewItemEstimativas();
 			}
 		}
@@ -144,11 +161,12 @@ public class CadastroItemEstimativaController implements Initializable  {
 		InserirItemEstimativaController controller = loader.getController();
 		controller.setDialogStage(dialogStage);
 		
-		if (opc == 1)
+		if (opc == 0)
 			controller.setEstimativa(estimativa);
 				
 		dialogStage.showAndWait();
-		
+		this.estimativa = controller.getEstimativa();
+		System.out.println(this.estimativa.toString());
 		return controller.isButtonConfirmarClicked();
 	}
 	
@@ -156,95 +174,5 @@ public class CadastroItemEstimativaController implements Initializable  {
 	public void handleButtonVoltar() throws IOException {
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/estimativa.fxml"));
         this.aPane.getChildren().setAll(ap);
-	}
-	
-//	@Override
-//	public void initialize(URL location, ResourceBundle resources) {
-////		estimativa = new Estimativa();
-//		listaItemEstimativa();
-//        this.tableViewCadastroItemEstimativa.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> selectItemTableViewItemEstimativa(newValue));
-//	}
-//	
-//	public void selectItemTableViewItemEstimativa(ItemEstimativa itemEstimativa){
-//		this.itemEstimativa = itemEstimativa;
-//	}
-//	
-//	@FXML
-//	public void handleButtonInserirItem() throws IOException {
-//		
-//		boolean buttonConfirmarClicked = showAnchorPaneCadastroCategoriaDialog(0);
-//		
-//		if (buttonConfirmarClicked) {
-//			loadTableViewCategorias();
-//		}
-//		
-//		
-////		FXMLLoader loader = new FXMLLoader();
-////		loader.setLocation(CadastroItemEstimativaController.class.getResource("/views/cadastroItemEstimativa.fxml"));
-////		
-////		InserirItemEstimativaController controller = loader.getController();
-////		controller.setEstimativa(estimativa);
-////		
-////		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/inserirItemEstimativa.fxml"));
-////        this.aPane.getChildren().setAll(ap);
-////        
-////        this.tableViewCadastroItemEstimativa.refresh();
-//	}
-//
-//	private boolean showAnchorPaneCadastroCategoriaDialog(int i) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	private void listaItemEstimativa() {
-//		ItemEstimativaDAO itemEstimativaDAO = new ItemEstimativaDAO();
-//		this.loadItemEstimativa = itemEstimativaDAO.all();
-//		
-//		this.cId.setCellValueFactory(new PropertyValueFactory<>("id"));
-//		this.cDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-//		this.cQtdem2.setCellValueFactory(new PropertyValueFactory<>("qtd"));
-//		this.cEstimado.setCellValueFactory(new PropertyValueFactory<>("estimado"));
-//		this.cVlrTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-//
-//		this.ItemEstimativaObservableList = FXCollections.observableArrayList(this.loadItemEstimativa);
-//		this.tableViewCadastroItemEstimativa.setItems(this.ItemEstimativaObservableList);
-//		this.tableViewCadastroItemEstimativa.refresh();
-//	}
-//	
-//	@FXML
-//	public void handleButtonDeletar() throws IOException {
-//		if (loadItemEstimativa.isEmpty()) {
-//			//this.label2.setText("Voc� n�o tem tarefas cadastradas!");
-//		}
-//		else {
-//			this.itemEstimativa = this.tableViewCadastroItemEstimativa.getSelectionModel().getSelectedItem();
-//			Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-//			confirmationAlert.setHeaderText("Remo��o de item estimatido");
-//			confirmationAlert.setContentText("Deseja realmente apagar o item estimado?");
-//			
-//			Optional<ButtonType> result = confirmationAlert.showAndWait();
-//			if (result.get() == ButtonType.OK) {
-//				ItemEstimativaDAO itemEstimativaDAO = new ItemEstimativaDAO();
-//				itemEstimativaDAO.delete(this.itemEstimativa);
-//				listaItemEstimativa();
-//			}
-//		}
-//	}
-//	
-//	@FXML
-//	public void handleButtonVoltar() throws IOException {
-//		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/estimativa.fxml"));
-//        this.aPane.getChildren().setAll(ap);
-//	}
-//	
-//	@FXML
-//	public void handleButtonGravar() throws IOException {		
-//		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/estimativa.fxml"));
-//        this.aPane.getChildren().setAll(ap);
-//	}
-//	
-//	
-//	
-	
+	}	
 }
