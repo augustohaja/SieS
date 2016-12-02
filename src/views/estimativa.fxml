@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EstimativaController">
+<AnchorPane id="AnchorPane" fx:id="aPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EstimativaController">
    <children>
       <Label layoutX="242.0" layoutY="29.0" text="Estimativas">
          <font>
@@ -23,6 +23,6 @@
       <Button fx:id="btnInsere" layoutX="151.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonInserirEstimativa" prefHeight="25.0" prefWidth="67.0" text="Incluir" />
       <Button fx:id="btnDeleta" layoutX="241.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonDeletar" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
       <Button fx:id="btnSair" layoutX="507.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleButtonVoltar" prefHeight="25.0" prefWidth="67.0" text="Sair" />
-      <Button fx:id="btnVisualizar" layoutX="333.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Visualizar" />
+      <Button fx:id="btnVisualizar" layoutX="333.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonVizualizar" prefHeight="25.0" prefWidth="117.0" text="Visualizar" />
    </children>
 </AnchorPane>

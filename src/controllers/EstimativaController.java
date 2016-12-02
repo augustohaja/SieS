@@ -7,12 +7,12 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.EstimativaDAO;
-import dao.MaterialDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import models.Estimativa;
 
 public class EstimativaController implements Initializable {
@@ -99,6 +100,27 @@ public class EstimativaController implements Initializable {
 				estimativaDAO.delete(this.estimativa);
 				listaMateriais();
 			}
+		}
+	}
+	
+	@FXML
+	public void handleButtonVizualizar() throws IOException {
+		if (loadEstimativa.isEmpty()) {
+			//this.label2.setText("Você não tem tarefas cadastradas!");
+		}
+		else {
+			this.estimativa = this.tableViewEstimativa.getSelectionModel().getSelectedItem();
+			
+	        FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(CadastroItemEstimativaController.class.getResource("/views/cadastroItemEstimativa.fxml"));
+	    	AnchorPane page = (AnchorPane) loader.load();
+	    		
+	    	this.aPane.getChildren().setAll(page);
+	    	
+	    	CadastroItemEstimativaController controller = loader.getController();
+	    	
+	    	controller.setEstimativa(estimativa);
+	    	controller.setDisable();
 		}
 	}
 

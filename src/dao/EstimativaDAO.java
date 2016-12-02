@@ -48,7 +48,7 @@ public class EstimativaDAO {
 	}
 
 	public List<ItemEstimativa> searchByEstimativa(Long id){
-		Query query = manager.createQuery("SELECT s FROM ItemEstimativa s WHERE estimativa_id = '" + id.toString() + "'");
+		Query query = manager.createQuery("SELECT s FROM ItemEstimativa s WHERE estimativa_id = '" + id + "'");
 		List<ItemEstimativa> list = query.getResultList();
 		return list;
 	}

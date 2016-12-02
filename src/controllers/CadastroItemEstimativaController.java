@@ -38,6 +38,8 @@ public class CadastroItemEstimativaController implements Initializable  {
 	@FXML
 	private Button btnSair;
 	@FXML
+	private Button btnGravar;
+	@FXML
 	private Button btnDeleta;
 	@FXML
 	private TextField txtNome;
@@ -57,7 +59,7 @@ public class CadastroItemEstimativaController implements Initializable  {
 	private TableColumn<ItemEstimativa, String> cVlrTotal;
 	
 	
-	private ObservableList<ItemEstimativa> ItemEstimativaObservableList;
+	private ObservableList<ItemEstimativa> itemEstimativaObservableList;
 	
 	
 	private List<ItemEstimativa> itemEstimativaList;
@@ -68,6 +70,30 @@ public class CadastroItemEstimativaController implements Initializable  {
 	
 	private EstimativaDAO daoEstimativa = new EstimativaDAO();
 
+	private Stage dialogStage;
+	
+	public Stage getDialogStage() {
+		return dialogStage;
+	}
+
+	public void setEstimativa(Estimativa estimativa){
+		this.estimativa = estimativa;
+	}
+	
+	public void setDisable(){
+		this.txtNome.setText(estimativa.getNome());
+		this.txtData.setText(estimativa.getData());
+		this.btnInsere.setDisable(true);
+		this.btnDeleta.setDisable(true);
+		this.btnGravar.setDisable(true);
+		this.txtNome.setDisable(true);
+		this.txtData.setDisable(true);
+	}
+	
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
+	
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
     	System.out.println("Inicializando...");
@@ -80,6 +106,7 @@ public class CadastroItemEstimativaController implements Initializable  {
 	
 	private void loadTableViewItemEstimativas() {
 		if (estimativa.getId() != null){
+			System.out.println("Id buscado: " + estimativa.getId());
 			this.itemEstimativaList = this.daoEstimativa.searchByEstimativa(estimativa.getId());
 
 			// 	a string é o nome do atributo da classe do objeto
@@ -90,8 +117,8 @@ public class CadastroItemEstimativaController implements Initializable  {
 			this.cVlrTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
 		
 			// 	conversão de ArrayList para ObservableList
-			this.ItemEstimativaObservableList = FXCollections.observableArrayList(this.itemEstimativaList);
-			this.tableViewCadastroItemEstimativa.setItems(this.ItemEstimativaObservableList);
+			this.itemEstimativaObservableList = FXCollections.observableArrayList(this.itemEstimativaList);
+			this.tableViewCadastroItemEstimativa.setItems(this.itemEstimativaObservableList);
 		}
 	}
 	
