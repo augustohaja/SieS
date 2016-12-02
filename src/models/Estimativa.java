@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Estimativa {
 	private String data;
 	private String nome;
 	
-	@OneToMany (mappedBy="estimativa")
+	@OneToMany (mappedBy="estimativa", cascade = CascadeType.ALL)
 	private List<ItemEstimativa> lista;
 
 	public Long getId() {
